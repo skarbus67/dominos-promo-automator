@@ -2,6 +2,7 @@ import mailslurp_client
 import os
 from dotenv import load_dotenv
 from mailslurp_client.rest import ApiException
+from exceptions import ConfigurationError
 
 load_dotenv(override=True)
 
@@ -10,7 +11,7 @@ class MailSlurpService:
     def __init__(self):
         api_key = os.environ.get('MAILSLURP_API_KEY')
         if not api_key:
-            raise ValueError("mailslurp api key is empty")
+            raise ConfigurationError("mailslurp api key is empty")
 
         self.configuration = mailslurp_client.Configuration()
         self.configuration.api_key['x-api-key'] = api_key
@@ -25,7 +26,7 @@ class MailSlurpService:
                 user_controller = mailslurp_client.UserControllerApi(self.api_client)
                 user_controller.get_user_info()
             except ApiException:
-                raise ValueError("mailslurp api key is wrong")
+                raise ConfigurationError("mailslurp api key is wrong")
 
     def create_mailbox(self):
         options = mailslurp_client.CreateInboxDto()

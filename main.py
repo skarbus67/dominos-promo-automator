@@ -3,6 +3,7 @@ from mailslurp_client.rest import ApiException
 import json
 from config import logger
 from email_parser import *
+from exceptions import *
 
 try:
     mss = MailSlurpService()
@@ -21,7 +22,7 @@ try:
     logger.info("succesfully recieved email")
 except ApiException as e:
     logger.error(f"api error : {json.loads(e.body)['message']}")
-except ValueError as e:
+except ConfigurationError as e:
     logger.error(f"configuration error : {e}")
 except Exception as e:
     logger.critical(f"unrecognized error : {e}")
@@ -38,4 +39,3 @@ finally:
         logger.warning("mailbox not found")
 
     
-
