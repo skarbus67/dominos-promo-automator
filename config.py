@@ -1,6 +1,15 @@
 import logging
+import os
+
+DOMINOS_SENDER_EMAIL = "dominos@dominospizza.pl"
+SUBJECT_PROMO_CODE = "Witaj w newsletterze Domino's!"
+SUBJECT_ACTIVATION = "Potwierdzenie subskrypcji newslettera Domino's"
 
 def setup_logger():
+
+    if not os.path.exists('logs'):
+        os.makedirs('logs')
+
     logger = logging.getLogger('dominos_automator')
     logger.setLevel(logging.DEBUG)
 
