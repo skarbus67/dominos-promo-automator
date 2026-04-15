@@ -5,6 +5,8 @@ DOMINOS_SENDER_EMAIL = "dominos@dominospizza.pl"
 SUBJECT_PROMO_CODE = "Witaj w newsletterze Domino's!"
 SUBJECT_ACTIVATION = "Potwierdzenie subskrypcji newslettera Domino's"
 
+PROMO_CODE_PATTERN = r'^[A-Z0-9]{8}$'
+
 def setup_logger():
 
     if not os.path.exists('logs'):

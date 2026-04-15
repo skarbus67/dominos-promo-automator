@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from mailslurp_client import Email
 import re
 from exceptions import EmailParsingError
+from config import PROMO_CODE_PATTERN
 
 def activation_link_extractor(mail: Email):
     bs = BeautifulSoup(mail.body, 'html.parser')
@@ -13,7 +14,7 @@ def activation_link_extractor(mail: Email):
 
 def promo_code_extractor(mail : Email):
     bs = BeautifulSoup(mail.body, 'html.parser')
-    pattern = r'^[A-Z0-9]{8}$'
+    pattern = PROMO_CODE_PATTERN
     all_p = bs.find_all('p')
     for p in all_p:
         text = p.get_text(strip=True)
