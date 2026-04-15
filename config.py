@@ -1,5 +1,4 @@
 import logging
-from logging.handlers import RotatingFileHandler
 
 def setup_logger():
     logger = logging.getLogger('dominos_automator')
@@ -12,12 +11,7 @@ def setup_logger():
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(console_log_format)
 
-    file_handler = RotatingFileHandler(
-        'logs/automator.log',
-        maxBytes=5*1024*1024,
-        backupCount=10,
-        encoding='utf-8'
-    )
+    file_handler = logging.FileHandler('logs/automator.log', encoding='utf-8')
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(file_log_format)
 
