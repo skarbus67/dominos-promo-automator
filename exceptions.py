@@ -1,5 +1,9 @@
-class AppError(Exception):
+class ScriptError(Exception):
     pass
 
-class ConfigurationError(AppError):
+class ConfigurationError(ScriptError):
     pass
+
+class EmailParsingError(ScriptError):
+    pass
+
