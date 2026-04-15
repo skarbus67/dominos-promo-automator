@@ -2,6 +2,7 @@ from mail_client import MailSlurpService
 from mailslurp_client.rest import ApiException
 import json
 from config import logger
+from email_parser import *
 
 try:
     mss = MailSlurpService()
@@ -9,14 +10,14 @@ try:
     mss.verify_api_key()
     logger.info("succesfuly authorized api key")
     logger.info("creating a new mailbox...")
-    mail = mss.create_mailbox()
+    mailbox = mss.create_mailbox()
     logger.info("succesfully created new mailbox")
-    logger.info(f"mail : {mail}")
+    logger.info(f"mail : {mailbox}")
     logger.info("waiting for email...")
-    sender, subject, body = mss.get_latest_email()
-    logger.debug(f"sednder : {sender}")
-    logger.debug(f"subject : {subject}")
-    logger.debug(f"body : {body}")
+    mail = mss.get_latest_email()
+    logger.debug(f"sender : {mail.sender.email_address}")
+    logger.debug(f"subject : {mail.subject}")
+    logger.debug(f"body : {mail.body}")
     logger.info("succesfully recieved email")
 except ApiException as e:
     logger.error(f"api error : {json.loads(e.body)['message']}")

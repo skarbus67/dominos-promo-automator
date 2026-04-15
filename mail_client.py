@@ -52,7 +52,7 @@ class MailSlurpService:
                     unread_only=True
                 )
 
-                return latest_email.sender.email_address, latest_email.subject, latest_email.body
+                return latest_email
             except ApiException as e:
                 if e.status == 408:
                     continue
