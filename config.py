@@ -2,7 +2,9 @@ import logging
 import os
 
 
-DOMINOS_PROMO_SITE = "https://www.dominospizza.pl/korzysci/"
+BASE_URL = "https://www.dominospizza.pl"
+PROMO_PATH = "/korzysci"
+API_NEWSLETTER_PATH = "/iapi/newsletter/subscribe"
 
 DOMINOS_SENDER_EMAIL = "dominos@dominospizza.pl"
 SUBJECT_PROMO_CODE = "Witaj w newsletterze Domino's!"

@@ -1,5 +1,5 @@
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError, Error as PlaywrightError
-from config import ACCEPT_COOKIES_BUTTON_ID, EMAIL_INPUT_ID, CONSENTS_CHECKBOX_ID, RECIEVE_PROMO_BUTTON_NAME, DOMINOS_PROMO_SITE
+from config import ACCEPT_COOKIES_BUTTON_ID, EMAIL_INPUT_ID, CONSENTS_CHECKBOX_ID, RECIEVE_PROMO_BUTTON_NAME, BASE_URL, PROMO_PATH
 from exceptions import AutomationError
 
 class DominosSiteAutomator:
@@ -17,7 +17,7 @@ class DominosSiteAutomator:
                 self.browser = self.p.chromium.launch(headless=False)
                 self.context = self.browser.new_context()
                 self.page = self.context.new_page()
-                self.page.goto(DOMINOS_PROMO_SITE, timeout=10000)
+                self.page.goto(BASE_URL+PROMO_PATH, timeout=10000)
             except PlaywrightTimeoutError:
                 raise AutomationError("timeout: failed opening site")
             except PlaywrightError as e:
