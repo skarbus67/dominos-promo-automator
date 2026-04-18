@@ -9,3 +9,6 @@ class EmailParsingError(ScriptError):
 
 class AutomationError(ScriptError):
     pass
+
+class CaptchaApiError(ScriptError):
+    pass
