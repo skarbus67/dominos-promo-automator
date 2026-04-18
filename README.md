@@ -22,9 +22,11 @@ To run the project locally, make sure you have Python version 3.10 or newer inst
 
 2. Create and activate a virtual environment:
    python -m venv venv
-   # Windows:
+
+   **Windows:**
    venv\Scripts\activate
-   # Linux/macOS:
+
+   **Linux/macOS:**
    source venv/bin/activate
 
 3. Install the required libraries:
