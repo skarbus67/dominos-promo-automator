@@ -43,11 +43,12 @@ To run the project locally, make sure you have Python version 3.10 or newer inst
 - Python 3.x
 - Playwright (browser automation)
 - curl_cffi (HTTP requests with TLS impersonation)
+- requests (CapMonster communication)
 - BeautifulSoup4 (HTML parsing and token extraction)
 - CapMonster API (automated CAPTCHA solving)
 - MailSlurp API (Professional Email Testing API)
 - Regex (re) (Data parsing and extraction)
-- Dotenv (configuration management)
+- Dotenv (configuration management) 
 
 ## ⚠️ Disclaimer
 This project was created for educational purposes only. The author is not responsible for any misuse of the script.
