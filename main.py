@@ -4,6 +4,7 @@ import json
 from config import *
 from email_parser import *
 from exceptions import *
+from form_automator import *
 
 
 def wait_for_specific_email(mss, expected_sender, expected_subject):
@@ -27,10 +28,24 @@ try:
     logger.info("succesfully created new mailbox")
     logger.info(f"mail : {mailbox}")
 
+    dsa = DominosSiteAutomator()
+    dsa.launch_dominos_site()
+    dsa.accept_cookies()
+    dsa.fill_email(mailbox)
+    dsa.check_consents()
+    dsa.submit_form()
+    input("lol..")
+    dsa.close_current_page()
+
     logger.info("waiting for email with link activation...")
     mail = wait_for_specific_email(mss, DOMINOS_SENDER_EMAIL, SUBJECT_ACTIVATION)
-    logger.info(f"activation link : {activation_link_extractor(mail)}")
+    link = activation_link_extractor(mail)
+    logger.info(f"activation link : {link}")
     logger.info("succesfully recieved email")
+
+    dsa.launch_activation_site(link)
+    dsa.close_current_page()
+    dsa.stop_playwright()
 
     logger.info("waiting for email with promo code...")
     mail = wait_for_specific_email(mss, DOMINOS_SENDER_EMAIL, SUBJECT_PROMO_CODE)
@@ -45,6 +60,8 @@ except ConfigurationError as e:
     logger.error(f"configuration error : {e}")
 except EmailParsingError as e:
     logger.error(f"email parsing error : {e}")
+except AutomationError as e:
+    logger.error(f"form automation error : {e}")
 except Exception as e:
     logger.critical(f"unrecognized error : {e}")
 

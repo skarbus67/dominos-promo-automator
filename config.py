@@ -7,6 +7,11 @@ SUBJECT_ACTIVATION = "Potwierdzenie subskrypcji newslettera Domino's"
 
 PROMO_CODE_PATTERN = r'^[A-Z0-9]{8}$'
 
+ACCEPT_COOKIES_BUTTON_ID = "onetrust-accept-btn-handler"
+EMAIL_INPUT_ID = "Email"
+CONSENTS_CHECKBOX_ID = "Consents-2"
+RECIEVE_PROMO_BUTTON_NAME = "Odbierz rabat"
+
 def setup_logger():
 
     if not os.path.exists('logs'):

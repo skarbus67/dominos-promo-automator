@@ -7,3 +7,5 @@ class ConfigurationError(ScriptError):
 class EmailParsingError(ScriptError):
     pass
 
+class AutomationError(ScriptError):
+    pass
