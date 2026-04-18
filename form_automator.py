@@ -37,7 +37,7 @@ class DominosSiteAutomator:
 
     def submit_form(self):
         try:
-            self.page.get_by_role("button", name=RECIEVE_PROMO_BUTTON_NAME).click(timeout=10000)
+            self.page.get_by_role("button", name=RECIEVE_PROMO_BUTTON_NAME).click(timeout=10000, force=True)
         except PlaywrightTimeoutError:
             raise AutomationError("timeout: failed finding submit button")
 
@@ -72,3 +72,10 @@ class DominosSiteAutomator:
         except Exception as e:
             raise AutomationError(f"failed stopping playwright: {e}")
 
+    def is_submit_successful(self):
+        success_indicator = self.page.locator("div.FormSuccess.is--show")
+        try:
+            success_indicator.wait_for(state="visible", timeout=1000)
+            return True
+        except PlaywrightTimeoutError:
+            return False

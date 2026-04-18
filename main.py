@@ -17,6 +17,11 @@ def wait_for_specific_email(mss, expected_sender, expected_subject):
         if expected_sender == sender and expected_subject == subject:
             return mail
             
+def sumbit_form_untill_succesfull(dsa: DominosSiteAutomator):
+    while(not dsa.is_submit_successful()):
+        dsa.submit_form()
+    
+    
 try:
     mss = MailSlurpService()
     logger.info("authorizing api key...")
@@ -33,8 +38,7 @@ try:
     dsa.accept_cookies()
     dsa.fill_email(mailbox)
     dsa.check_consents()
-    dsa.submit_form()
-    input("lol..")
+    sumbit_form_untill_succesfull(dsa)
     dsa.close_current_page()
 
     logger.info("waiting for email with link activation...")
