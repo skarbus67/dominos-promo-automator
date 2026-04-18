@@ -5,6 +5,13 @@ from config import *
 from email_parser import *
 from exceptions import *
 from form_automator import *
+import os
+from dotenv import load_dotenv
+from http_client import newsletter_activation, newsletter_signup
+
+
+load_dotenv(override=True)
+use_playwright = os.environ.get('USE_PLAYWRIGHT')
 
 
 def wait_for_specific_email(mss, expected_sender, expected_subject):
@@ -33,13 +40,17 @@ try:
     logger.info("succesfully created new mailbox")
     logger.info(f"mail : {mailbox}")
 
-    dsa = DominosSiteAutomator()
-    dsa.launch_dominos_site()
-    dsa.accept_cookies()
-    dsa.fill_email(mailbox)
-    dsa.check_consents()
-    sumbit_form_untill_succesfull(dsa)
-    dsa.close_current_page()
+    if(use_playwright == "true"):
+        dsa = DominosSiteAutomator()
+        dsa.launch_dominos_site()
+        dsa.accept_cookies()
+        dsa.fill_email(mailbox)
+        dsa.check_consents()
+        sumbit_form_untill_succesfull(dsa)
+        dsa.close_current_page()
+
+    else:
+        newsletter_signup(mailbox)
 
     logger.info("waiting for email with link activation...")
     mail = wait_for_specific_email(mss, DOMINOS_SENDER_EMAIL, SUBJECT_ACTIVATION)
@@ -47,9 +58,12 @@ try:
     logger.info(f"activation link : {link}")
     logger.info("succesfully recieved email")
 
-    dsa.launch_activation_site(link)
-    dsa.close_current_page()
-    dsa.stop_playwright()
+    if(use_playwright == "true"):
+        dsa.launch_activation_site(link)
+        dsa.close_current_page()
+        dsa.stop_playwright()
+    else:
+        newsletter_activation(link)
 
     logger.info("waiting for email with promo code...")
     mail = wait_for_specific_email(mss, DOMINOS_SENDER_EMAIL, SUBJECT_PROMO_CODE)
