@@ -4,6 +4,7 @@ import os
 CAPMONSTER_TASK_API = "https://api.capmonster.cloud/createTask"
 CAPMONSTER_RESULT_API = "https://api.capmonster.cloud/getTaskResult"
 
+DOMINOS_SITE_CONFIG = "b69800d2-7fc0-4d4e-a7bc-2e419ed7d4f2"
 DOMINOS_SITE_KEY = "6Ley0gcaAAAAABVSBf1QCyxDzW9SpZqcRAJ8jkin"
 CAPTCHA_TYPE = "RecaptchaV2TaskProxyless"
 
