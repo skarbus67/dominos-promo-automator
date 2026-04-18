@@ -35,11 +35,6 @@ class DominosSiteAutomator:
         except PlaywrightTimeoutError:
             raise AutomationError("timeout: failed finding consents checkbox")
 
-    def submit_form(self):
-        try:
-            self.page.get_by_role("button", name=RECIEVE_PROMO_BUTTON_NAME).click(timeout=10000, force=True)
-        except PlaywrightTimeoutError:
-            raise AutomationError("timeout: failed finding submit button")
 
     def close_current_page(self):
         try:
@@ -79,3 +74,16 @@ class DominosSiteAutomator:
             return True
         except PlaywrightTimeoutError:
             return False
+        
+    def submit_form(self):
+        try:
+            self.page.get_by_role("button", name=RECIEVE_PROMO_BUTTON_NAME).click(timeout=2000, force=True)
+        except PlaywrightTimeoutError:
+            raise AutomationError("timeout: failed finding submit button")
+
+    def sumbit_form_untill_succesfull(self):
+        while(not self.is_submit_successful):
+            try:
+                self.submit_form()
+            except AutomationError:
+                pass

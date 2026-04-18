@@ -24,10 +24,6 @@ def wait_for_specific_email(mss, expected_sender, expected_subject):
         if expected_sender == sender and expected_subject == subject:
             return mail
             
-def sumbit_form_untill_succesfull(dsa: DominosSiteAutomator):
-    while(not dsa.is_submit_successful()):
-        dsa.submit_form()
-    
     
 try:
     mss = MailSlurpService()
@@ -46,7 +42,7 @@ try:
         dsa.accept_cookies()
         dsa.fill_email(mailbox)
         dsa.check_consents()
-        sumbit_form_untill_succesfull(dsa)
+        dsa.sumbit_form_untill_succesfull()
         dsa.close_current_page()
 
     else:
