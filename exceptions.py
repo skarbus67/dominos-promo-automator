@@ -7,6 +7,9 @@ class ConfigurationError(ScriptError):
 class EmailParsingError(ScriptError):
     pass
 
+class SiteParsingError(ScriptError):
+    pass
+
 class AutomationError(ScriptError):
     pass
 
