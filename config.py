@@ -1,6 +1,9 @@
 import logging
 import os
 
+
+DOMINOS_PROMO_SITE = "https://www.dominospizza.pl/korzysci/"
+
 DOMINOS_SENDER_EMAIL = "dominos@dominospizza.pl"
 SUBJECT_PROMO_CODE = "Witaj w newsletterze Domino's!"
 SUBJECT_ACTIVATION = "Potwierdzenie subskrypcji newslettera Domino's"
