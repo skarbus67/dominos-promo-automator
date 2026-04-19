@@ -21,7 +21,7 @@ def newsletter_signup(email):
         "Consents": ["2"],
         "Email": email,
         "FormType": "0",
-        "g-recaptcha-response": "lol",
+        "g-recaptcha-response": captcha,
         "__RequestVerificationToken": extracted_token
     }
 
