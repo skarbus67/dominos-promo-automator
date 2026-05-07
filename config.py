@@ -9,7 +9,7 @@ DOMINOS_SITE_KEY = "6Ley0gcaAAAAABVSBf1QCyxDzW9SpZqcRAJ8jkin"
 CAPTCHA_TYPE = "RecaptchaV2TaskProxyless"
 
 BASE_URL = "https://www.dominospizza.pl"
-PROMO_PATH = "/korzysci"
+PROMO_PATH = "/"
 API_NEWSLETTER_PATH = "/iapi/newsletter/subscribe"
 
 DOMINOS_SENDER_EMAIL = "dominos@dominospizza.pl"
