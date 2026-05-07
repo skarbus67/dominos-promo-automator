@@ -7,7 +7,7 @@ curl_cffi==0.15.0
 greenlet==3.4.0
 h11==0.16.0
 idna==3.11
-mailslurp-client==17.5.0
+mailslurp-client==15.17.17
 markdown-it-py==4.0.0
 mdurl==0.1.2
 packaging==26.0
